@@ -8,9 +8,9 @@ services:
       - PGID=1000
       - TZ=America/Chicago
     volumes:
-      - /mnt/RAID/torrents/config:/config
-      - /mnt/RAID/torrents/download:/downloads
-      - /mnt/RAID/torrents/watch:/watch
+      - /mnt/torrents/config:/config
+      - /mnt/torrents/download:/downloads
+      - /mnt/torrents/watch:/watch
     ports:
       - 9091:9091
       - 51413:51413
