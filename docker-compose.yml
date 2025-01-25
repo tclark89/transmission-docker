@@ -8,10 +8,31 @@ services:
       - PGID=1000
       - TZ=America/Chicago
     volumes:
-      - /mnt/torrents/config:/config
-      - /mnt/torrents/download:/downloads
-      - /mnt/torrents/watch:/watch
+      - config:/config
+      - download:/downloads
+      - watch:/watch
     ports:
       - 9091:9091
       - 51413:51413
       - 51413:51413/udp
+
+
+volumes:
+  config:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=fileserver.localdomain.lan,rw,vers=4.1
+      device: ":/srv/docker/transmission/config"
+  download:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=fileserver.localdomain.lan,rw,vers=4.1
+      device: ":/mnt/torrents/download"
+  watch:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=fileserver.localdomain.lan,rw,vers=4.1
+      device: ":/mnt/torrents/watch"
