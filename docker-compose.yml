@@ -12,8 +12,16 @@ services:
       - /mnt/torrents/download:/downloads
       - /mnt/torrents/watch:/watch
     ports:
-      - 9091:9091
+      # - 9091:9091
       - 51413:51413
       - 51413:51413/udp
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.transmission.rule=Host(`transmission.tyler-clark.com`)
+      - traefik.http.routers.transmission.tls=true
+      - treafik.http.routers.transmission.tls.certresolver=cloudflare
 
-
+networks:
+  default:
+    name: frontend
+    external: true
