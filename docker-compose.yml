@@ -21,6 +21,10 @@ services:
       - traefik.http.routers.transmission.tls=true
       - treafik.http.routers.transmission.tls.certresolver=cloudflare
 
+      - "traefik.http.routers.transmission.service=transmission"
+      - "traefik.http.services.transmission.loadbalancer.server.port=9091"
+      - "traefik.http.services.transmission.loadbalancer.server.scheme=http"
+
 networks:
   default:
     name: frontend
